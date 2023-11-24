@@ -1,8 +1,9 @@
 import pandas as pd
 
-df = pd.read_csv('data/raw/train.csv')
+files = ['train.csv', 'test.csv']
 
-features_to_keep = ['Survived', 'Age', 'Pclass', 'Sex', 'SibSp', 'Fare', 'Embarked']
-
-df[features_to_keep].to_csv('data/features/train.csv', index=False)
+for file in files:
+    df = pd.read_csv(f'data/raw/{file}')
+    features_to_keep = ['Survived', 'Age', 'Pclass', 'Sex', 'SibSp', 'Fare', 'Embarked']
+    df[features_to_keep].to_csv(f'data/features/{file}', index=False)
 

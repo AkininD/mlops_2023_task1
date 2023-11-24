@@ -14,7 +14,10 @@ def prepare_data(df):
 
     return df
 
-df = pd.read_csv('data/features/train.csv')
-prepared_df = prepare_data(df)
-prepared_df.to_csv('data/prepared/train.csv')
+files = ['train.csv', 'test.csv']
+
+for file in files:
+    df = pd.read_csv(f'data/features/{file}')
+    prepared_df = prepare_data(df)
+    prepared_df.to_csv(f'data/prepared/{file}', index=False)
 
