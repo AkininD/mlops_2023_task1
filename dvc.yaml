@@ -1,0 +1,16 @@
+stages:
+ features:
+   cmd: python src/feature_selection.py
+   deps:
+     - data/raw/train.csv
+     - src/feature_selection.py
+   outs:
+     - data/features/train.csv
+ prepared:
+   cmd: python src/prepare.py
+   deps:
+     - data/features/train.csv
+     - src/prepare.py
+   outs:
+     - data/prepared/train.csv
+
