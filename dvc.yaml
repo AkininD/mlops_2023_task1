@@ -3,16 +3,20 @@ stages:
    cmd: python src/feature_selection.py
    deps:
      - data/raw/train.csv
+     - data/raw/test.csv
      - src/feature_selection.py
    outs:
      - data/features/train.csv
+     - data/features/test.csv
  prepared:
    cmd: python src/prepare.py
    deps:
      - data/features/train.csv
+     - data/features/test.csv
      - src/prepare.py
    outs:
      - data/prepared/train.csv
+     - data/prepared/test.csv
  train_model:
    cmd: python src/train_model.py
    deps:
@@ -20,4 +24,12 @@ stages:
      - src/train_model.py
    outs:
      - model/model.pkl
-
+ evaluate:
+   cmd: python src/evaluate.py
+   deps:
+     - model/model.pkl
+     - data/prepared/test.csv
+     - src/evaluate.py
+   metrics:
+     - model/evaluate.json:
+         cache: false
