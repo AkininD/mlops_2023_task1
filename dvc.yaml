@@ -22,6 +22,7 @@ stages:
    deps:
      - data/prepared/train.csv
      - src/train_model.py
+     - model/params.yaml
    outs:
      - model/model.pkl
  evaluate:
